@@ -1,0 +1,163 @@
+﻿/* =============================================
+   LOVE FOR BARSHA — Shared Styles
+   ============================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap");
+
+:root {
+  --deep-red:    #8B1A1A;
+  --rose:        #C0392B;
+  --blush:       #F5B7B1;
+  --pink-light:  #FDE8E8;
+  --gold:        #D4AC0D;
+  --gold-light:  #F9E79F;
+  --cream:       #FFF8F8;
+  --dark:        #1A0A0A;
+  --text:        #3D0000;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Lato", sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--pink-light); }
+::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; justify-content: center; align-items: center; gap: 2rem;
+  padding: 1rem 2rem;
+  background: rgba(139,26,26,0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+nav .logo {
+  font-family: "Dancing Script", cursive; font-size: 1.6rem;
+  color: #F9E79F; text-decoration: none; margin-right: auto; letter-spacing: 1px;
+}
+nav a {
+  color: #F5B7B1; text-decoration: none; font-size: 0.9rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  transition: color .3s, letter-spacing .3s; font-weight: 700;
+}
+nav a:hover, nav a.active { color: #F9E79F; letter-spacing: 3px; }
+
+/* HERO */
+.hero {
+  position: relative; height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; overflow: hidden;
+  background: radial-gradient(ellipse at center, #2d0505 0%, #0d0000 100%);
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(192,57,43,0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: bgDrift 40s linear infinite; pointer-events: none;
+}
+@keyframes bgDrift {
+  from { background-position: 0 0; } to { background-position: 300px 300px; }
+}
+.hero-content { position: relative; z-index: 2; padding: 0 1rem; }
+.hero h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(3rem, 10vw, 7rem); color: #fff; line-height: 1.1;
+  text-shadow: 0 0 40px rgba(192,57,43,0.8), 0 0 80px rgba(192,57,43,0.4);
+  animation: fadeInUp .9s ease both;
+}
+.hero p {
+  font-family: "Playfair Display", serif; font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.4rem); color: #F5B7B1;
+  margin-top: 1.2rem; animation: fadeInUp 1.1s ease both; max-width: 600px;
+}
+.hero-btn {
+  display: inline-block; margin-top: 2.5rem; padding: .85rem 2.5rem;
+  background: transparent; border: 2px solid #D4AC0D; color: #F9E79F;
+  font-family: "Lato", sans-serif; font-size: .95rem; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none; border-radius: 50px;
+  transition: background .3s, color .3s, transform .2s;
+  animation: fadeInUp 1.3s ease both; cursor: pointer;
+}
+.hero-btn:hover { background: #D4AC0D; color: #1A0A0A; transform: translateY(-3px); }
+
+/* FLOATING HEARTS */
+.hearts-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 9999; overflow: hidden;
+}
+.heart-particle {
+  position: absolute; bottom: -50px; font-size: 1.4rem;
+  animation: floatHeart linear infinite; opacity: 0; user-select: none;
+}
+@keyframes floatHeart {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
+  10%  { opacity: .6; }
+  90%  { opacity: .3; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* SECTION */
+.section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+.section-title {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.2rem, 5vw, 3.5rem); color: #8B1A1A; text-align: center; margin-bottom: .5rem;
+}
+.section-sub {
+  font-family: "Playfair Display", serif; font-style: italic;
+  text-align: center; color: #C0392B; font-size: 1rem; margin-bottom: 3rem;
+}
+.divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: .6rem; margin: 1rem 0 2.5rem; color: #D4AC0D; font-size: 1.1rem;
+}
+.divider::before, .divider::after {
+  content: ""; display: block; height: 1px; width: 80px;
+}
+.divider::before { background: linear-gradient(to right, transparent, #D4AC0D); }
+.divider::after  { background: linear-gradient(to left, transparent, #D4AC0D); }
+
+/* CARD */
+.card {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(139,26,26,0.12); padding: 2rem;
+  transition: transform .3s, box-shadow .3s;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(139,26,26,0.2); }
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* FOOTER */
+footer {
+  background: #1A0A0A; color: #F5B7B1; text-align: center; padding: 2rem;
+  font-family: "Dancing Script", cursive; font-size: 1.2rem; letter-spacing: 1px;
+}
+footer span { color: #C0392B; }
+
+/* BG VARIANTS */
+.bg-rose { background: linear-gradient(135deg, #fff0f0 0%, #ffe4e4 100%); min-height: 100vh; padding-top: 80px; }
+.bg-dark { background: linear-gradient(160deg, #1a0505 0%, #2d0a0a 60%, #1a0505 100%); min-height: 100vh; padding-top: 80px; color: #fff; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { gap: 1rem; padding: .8rem 1rem; }
+  nav .logo { font-size: 1.2rem; }
+  nav a { font-size: .75rem; letter-spacing: 1px; }
+  .section { padding: 4rem 1.2rem; }
+}

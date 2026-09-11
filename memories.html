@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Memories — Barsha & You</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      min-height: 55vh; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center;
+      background: radial-gradient(ellipse at center, #1a0505 0%, #3d0000 60%, #0d0000 100%);
+      padding: 6rem 2rem 3rem; position: relative; overflow: hidden;
+    }
+    .page-hero h1 {
+      font-family: "Dancing Script", cursive; font-size: clamp(2.5rem,8vw,5.5rem); color: #fff;
+      text-shadow: 0 0 40px rgba(192,57,43,.8); position: relative; z-index: 1;
+    }
+    .page-hero p {
+      font-family: "Playfair Display", serif; font-style: italic;
+      color: #F5B7B1; font-size: 1.1rem; margin-top: .8rem; position: relative; z-index: 1;
+    }
+    .page-hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(192,57,43,0.2) 0%, transparent 60%);
+    }
+
+    /* MASONRY-STYLE CARDS */
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+    .mem-card {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 30px rgba(139,26,26,0.12);
+      transition: transform .35s, box-shadow .35s;
+      cursor: pointer; position: relative;
+    }
+    .mem-card:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 20px 50px rgba(139,26,26,0.22); }
+    .mem-card:nth-child(even):hover { transform: translateY(-8px) rotate(1deg); }
+
+    .mem-visual {
+      height: 200px; display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; position: relative; overflow: hidden;
+    }
+    .mem-card:nth-child(1) .mem-visual { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+    .mem-card:nth-child(2) .mem-visual { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+    .mem-card:nth-child(3) .mem-visual { background: linear-gradient(135deg, #fccb90, #d57eeb); }
+    .mem-card:nth-child(4) .mem-visual { background: linear-gradient(135deg, #c3cfe2, #f5cee3); }
+    .mem-card:nth-child(5) .mem-visual { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .mem-card:nth-child(6) .mem-visual { background: linear-gradient(135deg, #4facfe, #d4e7c5); }
+    .mem-card:nth-child(7) .mem-visual { background: linear-gradient(135deg, #43e97b, #ffecd2); }
+    .mem-card:nth-child(8) .mem-visual { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+    .mem-emoji { animation: pulse 3s ease-in-out infinite; display: inline-block; }
+    .mem-tape {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 18px; background: rgba(249,231,159,0.7);
+      border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .mem-body { padding: 1.2rem 1.4rem 1.5rem; }
+    .mem-tag {
+      font-size: .72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: #C0392B; font-weight: 700; margin-bottom: .4rem;
+    }
+    .mem-title { font-family: "Dancing Script", cursive; font-size: 1.4rem; color: #3D0000; margin-bottom: .5rem; }
+    .mem-desc { font-size: .9rem; line-height: 1.7; color: #666; }
+    .mem-desc span { color: #C0392B; font-weight: 700; font-style: italic; }
+
+    /* POLAROID STRIP */
+    .polaroid-strip {
+      display: flex; gap: 1.5rem; overflow-x: auto; padding: 2rem 1rem;
+      scrollbar-width: thin; scrollbar-color: #C0392B transparent;
+    }
+    .polaroid {
+      flex: 0 0 180px; background: #fff; padding: 1rem 1rem 1.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-radius: 2px;
+      transform: rotate(calc(var(--r, 0) * 1deg));
+      transition: transform .3s;
+    }
+    .polaroid:nth-child(1) { --r: -3; }
+    .polaroid:nth-child(2) { --r: 2; }
+    .polaroid:nth-child(3) { --r: -2; }
+    .polaroid:nth-child(4) { --r: 3; }
+    .polaroid:nth-child(5) { --r: -1; }
+    .polaroid:hover { transform: rotate(0) scale(1.05) translateY(-10px); z-index: 10; }
+    .polaroid-img {
+      width: 100%; height: 150px; border-radius: 1px;
+      display: flex; align-items: center; justify-content: center; font-size: 4rem;
+    }
+    .polaroid:nth-child(1) .polaroid-img { background: linear-gradient(135deg,#ffecd2,#fcb69f); }
+    .polaroid:nth-child(2) .polaroid-img { background: linear-gradient(135deg,#f093fb,#f5576c); }
+    .polaroid:nth-child(3) .polaroid-img { background: linear-gradient(135deg,#43e97b,#ffecd2); }
+    .polaroid:nth-child(4) .polaroid-img { background: linear-gradient(135deg,#4facfe,#d4e7c5); }
+    .polaroid:nth-child(5) .polaroid-img { background: linear-gradient(135deg,#c3cfe2,#f5cee3); }
+    .polaroid-caption { font-family: "Dancing Script", cursive; font-size: .95rem; color: #555; text-align: center; margin-top: .6rem; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lb-content {
+      background: #fff; border-radius: 16px; padding: 2.5rem;
+      max-width: 500px; width: 90%; text-align: center; position: relative;
+      animation: fadeInUp .3s ease;
+    }
+    .lb-close {
+      position: absolute; top: 1rem; right: 1rem; background: none; border: none;
+      font-size: 1.5rem; cursor: pointer; color: #888;
+    }
+    .lb-emoji { font-size: 5rem; margin-bottom: 1rem; }
+    .lb-title { font-family: "Dancing Script", cursive; font-size: 2rem; color: #8B1A1A; margin-bottom: .8rem; }
+    .lb-text { font-family: "Playfair Display", serif; font-style: italic; color: #555; line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <nav>
+    <a href="index.html" class="logo">❤ Barsha</a>
+    <a href="index.html">Home</a>
+    <a href="story.html">Our Story</a>
+    <a href="letter.html">Love Letter</a>
+    <a href="memories.html" class="active">Memories</a>
+    <a href="promises.html">Promises</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <h1>Our Memories</h1>
+    <p>Every moment with you is a treasure I keep forever</p>
+  </section>
+
+  <!-- POLAROID STRIP -->
+  <section class="bg-rose" style="overflow:hidden;">
+    <div class="section">
+      <h2 class="section-title reveal">Snapshot of Us</h2>
+      <p class="section-sub reveal">Click on a card to relive the moment</p>
+      <div class="polaroid-strip reveal">
+        <div class="polaroid"><div class="polaroid-img">🌅</div><div class="polaroid-caption">Our sunsets</div></div>
+        <div class="polaroid"><div class="polaroid-img">🌙</div><div class="polaroid-caption">Late nights</div></div>
+        <div class="polaroid"><div class="polaroid-img">☕</div><div class="polaroid-caption">Morning coffee</div></div>
+        <div class="polaroid"><div class="polaroid-img">🎵</div><div class="polaroid-caption">Our song</div></div>
+        <div class="polaroid"><div class="polaroid-img">🌧️</div><div class="polaroid-caption">Rainy days</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY CARDS -->
+  <section class="bg-rose">
+    <div class="section">
+      <h2 class="section-title reveal">Moments I Treasure</h2>
+      <div class="divider reveal">🎞️</div>
+      <div class="memories-grid">
+        <div class="mem-card reveal" data-emoji="🌅" data-title="Our First Sunset" data-text="We stood together watching the sky turn golden, and I remember thinking — this is exactly where I want to be. Beside Barsha, watching the world turn beautiful.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">🌅</span></div>
+          <div class="mem-body"><div class="mem-tag">Golden Hour</div><div class="mem-title">Our First Sunset</div><p class="mem-desc">Standing beside <span>Barsha</span>, watching the sky paint itself for us.</p></div>
+        </div>
+        <div class="mem-card reveal" data-emoji="☕" data-title="Lazy Mornings" data-text="Those slow mornings where time felt suspended — warm drinks, soft music, and you. Barsha has this gift of making ordinary mornings feel extraordinary.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">☕</span></div>
+          <div class="mem-body"><div class="mem-tag">Morning Bliss</div><div class="mem-title">Lazy Mornings</div><p class="mem-desc">Slow, warm, unhurried — the mornings <span>you</span> made magical.</p></div>
+        </div>
+        <div class="mem-card reveal" data-emoji="🌙" data-title="Late Night Talks" data-text="Hours melting away as we talked about everything and nothing. Your voice at midnight is my favourite sound in the entire world, Barsha.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">🌙</span></div>
+          <div class="mem-body"><div class="mem-tag">After Midnight</div><div class="mem-title">Late Night Talks</div><p class="mem-desc">When the world sleeps and it is just <span>us</span>.</p></div>
+        </div>
+        <div class="mem-card reveal" data-emoji="🌧️" data-title="Rain & Us" data-text="Rainy days used to feel lonely. But now, every drop of rain reminds me of you — sitting together, watching it fall, perfectly content just being close.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">🌧️</span></div>
+          <div class="mem-body"><div class="mem-tag">Rainy Season</div><div class="mem-title">Rain &amp; Us</div><p class="mem-desc">Even the storms are beautiful when <span>Barsha</span> is near.</p></div>
+        </div>
+        <div class="mem-card reveal" data-emoji="🎵" data-title="Our Song" data-text="There is a song that is entirely ours — the one that plays and suddenly I am right there with you again. Music will always carry a little piece of us inside it.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">🎵</span></div>
+          <div class="mem-body"><div class="mem-tag">Our Melody</div><div class="mem-title">Our Song</div><p class="mem-desc">Every note a reminder of <span>us</span>.</p></div>
+        </div>
+        <div class="mem-card reveal" data-emoji="🌸" data-title="Spring Walks" data-text="Walking with you, no destination in mind, just wandering — and realising that anywhere with Barsha is exactly where I want to be.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">🌸</span></div>
+          <div class="mem-body"><div class="mem-tag">Springtime</div><div class="mem-title">Spring Walks</div><p class="mem-desc">Aimless walks that led me straight to <span>home</span>.</p></div>
+        </div>
+        <div class="mem-card reveal" data-emoji="⭐" data-title="Stargazing" data-text="Lying under the stars with you, I counted them all — but none of them compare to the light you bring into my life, Barsha. You outshine every single one.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">⭐</span></div>
+          <div class="mem-body"><div class="mem-tag">Night Sky</div><div class="mem-title">Stargazing</div><p class="mem-desc">The stars were bright, but <span>Barsha</span> was brighter.</p></div>
+        </div>
+        <div class="mem-card reveal" data-emoji="🎂" data-title="Celebrations" data-text="Every celebration means more with you in it. Every birthday, every little win, every tiny milestone — all of them become something truly special because you are there.">
+          <div class="mem-visual"><div class="mem-tape"></div><span class="mem-emoji">🎂</span></div>
+          <div class="mem-body"><div class="mem-tag">Milestones</div><div class="mem-title">Celebrations</div><p class="mem-desc">Every milestone sweeter with <span>you</span> beside me.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lb-content">
+      <button class="lb-close" id="lbClose">✕</button>
+      <div class="lb-emoji" id="lbEmoji"></div>
+      <div class="lb-title" id="lbTitle"></div>
+      <div class="lb-text" id="lbText"></div>
+    </div>
+  </div>
+
+  <footer>Made with <span>❤</span> for Barsha — always and forever</footer>
+
+  <script>
+    const container = document.getElementById("heartsContainer");
+    const emojis = ["❤️","💕","💗","💓","💖","🌹","💝","✨","💞","🌸"];
+    function spawnHeart() {
+      const el = document.createElement("div");
+      el.className = "heart-particle";
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (.8 + Math.random() * 1.2) + "rem";
+      const dur = 7 + Math.random() * 8;
+      el.style.animationDuration = dur + "s";
+      container.appendChild(el);
+      setTimeout(() => el.remove(), dur * 1000);
+    }
+    setInterval(spawnHeart, 700);
+
+    /* Reveal */
+    const reveals = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+
+    /* Lightbox */
+    const lightbox = document.getElementById("lightbox");
+    document.querySelectorAll(".mem-card").forEach(card => {
+      card.addEventListener("click", () => {
+        document.getElementById("lbEmoji").textContent  = card.dataset.emoji;
+        document.getElementById("lbTitle").textContent  = card.dataset.title;
+        document.getElementById("lbText").textContent   = card.dataset.text;
+        lightbox.classList.add("open");
+      });
+    });
+    document.getElementById("lbClose").addEventListener("click", () => lightbox.classList.remove("open"));
+    lightbox.addEventListener("click", e => { if (e.target === lightbox) lightbox.classList.remove("open"); });
+  </script>
+</body>
+</html>

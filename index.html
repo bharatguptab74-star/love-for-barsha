@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Barsha — With All My Love</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── HOME PAGE SPECIFIC ── */
+    .tagline-bar {
+      position: absolute; bottom: 2rem; left: 0; right: 0;
+      display: flex; justify-content: center; gap: 3rem; z-index: 3;
+    }
+    .tagline-bar span {
+      color: rgba(245,183,177,0.6); font-size: .8rem; letter-spacing: 3px; text-transform: uppercase;
+    }
+
+    /* countdown */
+    .countdown-wrap {
+      margin-top: 2.5rem; animation: fadeInUp 1.5s ease both;
+    }
+    .countdown-grid {
+      display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+    }
+    .count-box {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(212,172,13,0.4);
+      border-radius: 12px; padding: .8rem 1.2rem; text-align: center; min-width: 70px;
+    }
+    .count-num {
+      font-family: "Dancing Script", cursive; font-size: 2.4rem; color: #F9E79F; display: block; line-height: 1;
+    }
+    .count-label { font-size: .65rem; letter-spacing: 2px; color: #F5B7B1; text-transform: uppercase; }
+
+    /* intro section */
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .intro-text p {
+      font-family: "Playfair Display", serif; font-size: 1.1rem; line-height: 1.9;
+      color: #3D0000; margin-bottom: 1.2rem;
+    }
+    .intro-text p span { color: #C0392B; font-style: italic; font-weight: 700; }
+    .rose-visual {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10rem; animation: pulse 3s ease-in-out infinite; filter: drop-shadow(0 0 30px rgba(192,57,43,0.5));
+    }
+
+    /* quote strip */
+    .quote-strip {
+      background: linear-gradient(135deg, #8B1A1A, #C0392B);
+      padding: 3rem 2rem; text-align: center; margin: 0;
+    }
+    .quote-strip blockquote {
+      font-family: "Playfair Display", serif; font-style: italic;
+      font-size: clamp(1.2rem, 3vw, 1.8rem); color: #fff; max-width: 700px; margin: 0 auto;
+      line-height: 1.7; position: relative;
+    }
+    .quote-strip blockquote::before { content: "\201C"; font-size: 5rem; color: rgba(255,255,255,0.15); position: absolute; top: -1rem; left: -1rem; line-height: 1; }
+    .quote-strip cite { display: block; margin-top: 1rem; color: #F9E79F; font-style: normal; font-size: .9rem; letter-spacing: 2px; }
+
+    /* nav links */
+    .nav-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
+    }
+    .nav-card {
+      background: linear-gradient(135deg, #fff0f0, #fff8f8); border-radius: 16px;
+      padding: 2rem; text-align: center; border: 1px solid rgba(192,57,43,0.15);
+      box-shadow: 0 4px 20px rgba(139,26,26,0.08); text-decoration: none;
+      transition: transform .3s, box-shadow .3s; display: block;
+    }
+    .nav-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(139,26,26,0.18); }
+    .nav-card .icon { font-size: 2.8rem; margin-bottom: .8rem; display: block; }
+    .nav-card h3 { font-family: "Dancing Script", cursive; font-size: 1.5rem; color: #8B1A1A; margin-bottom: .4rem; }
+    .nav-card p { font-size: .9rem; color: #888; line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .rose-visual { font-size: 6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo">❤ Barsha</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="story.html">Our Story</a>
+    <a href="letter.html">Love Letter</a>
+    <a href="memories.html">Memories</a>
+    <a href="promises.html">Promises</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>For You, Barsha</h1>
+      <p>Every heartbeat echoes your name. This little corner of the internet is made just for you — the most beautiful person in my world.</p>
+      <a href="story.html" class="hero-btn">Explore Our Love ↓</a>
+
+      <div class="countdown-wrap">
+        <div style="color:rgba(245,183,177,0.7);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.8rem;">Days of loving you</div>
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="count-box"><span class="count-num" id="days">—</span><span class="count-label">Days</span></div>
+          <div class="count-box"><span class="count-num" id="hours">—</span><span class="count-label">Hours</span></div>
+          <div class="count-box"><span class="count-num" id="minutes">—</span><span class="count-label">Minutes</span></div>
+          <div class="count-box"><span class="count-num" id="seconds">—</span><span class="count-label">Seconds</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tagline-bar">
+      <span>Always</span><span>❤</span><span>Forever</span>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="bg-rose">
+    <div class="section">
+      <h2 class="section-title reveal">Hello, My Love</h2>
+      <div class="divider reveal">❤</div>
+      <div class="intro-grid">
+        <div class="intro-text reveal">
+          <p>From the very first moment I saw <span>Barsha</span>, I knew something extraordinary had walked into my life. You carry a warmth that melts every worry, a smile that lights up every dark corner, and a soul so beautiful that words can barely touch it.</p>
+          <p>This little website is my way of telling you — not just today, but always — that you are <span>cherished, adored, and deeply, endlessly loved</span>. Every page here is a piece of my heart, written just for you.</p>
+          <p>Go ahead, explore, and know that with every click you make, my love for you only grows stronger. <span>You are my everything, Barsha.</span></p>
+        </div>
+        <div class="rose-visual reveal">🌹</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-strip">
+    <blockquote>
+      "I have waited all my life for a love like this — and then you walked in, and suddenly I understood every love song ever written."
+      <cite>— Written for Barsha</cite>
+    </blockquote>
+  </div>
+
+  <!-- EXPLORE -->
+  <section class="bg-rose">
+    <div class="section">
+      <h2 class="section-title reveal">Explore Our World</h2>
+      <p class="section-sub reveal">Four more pages of love, just waiting for you</p>
+      <div class="nav-cards">
+        <a href="story.html" class="nav-card reveal">
+          <span class="icon">📖</span>
+          <h3>Our Story</h3>
+          <p>How two souls found each other and created a love worth telling.</p>
+        </a>
+        <a href="letter.html" class="nav-card reveal">
+          <span class="icon">💌</span>
+          <h3>Love Letter</h3>
+          <p>Words from the deepest corners of my heart, written only for you.</p>
+        </a>
+        <a href="memories.html" class="nav-card reveal">
+          <span class="icon">🎞️</span>
+          <h3>Our Memories</h3>
+          <p>A gallery of moments and feelings we've created together.</p>
+        </a>
+        <a href="promises.html" class="nav-card reveal">
+          <span class="icon">🕯️</span>
+          <h3>My Promises</h3>
+          <p>Vows I make to you today, tomorrow, and every day after.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Made with <span>❤</span> for Barsha — always and forever
+  </footer>
+
+  <script>
+    /* ── FLOATING HEARTS ── */
+    const container = document.getElementById("heartsContainer");
+    const emojis = ["❤️","💕","💗","💓","💖","🌹","💝","✨","💞","🌸"];
+    function spawnHeart() {
+      const el = document.createElement("div");
+      el.className = "heart-particle";
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (.8 + Math.random() * 1.4) + "rem";
+      const dur = 6 + Math.random() * 8;
+      el.style.animationDuration = dur + "s";
+      el.style.animationDelay = "0s";
+      container.appendChild(el);
+      setTimeout(() => el.remove(), dur * 1000);
+    }
+    setInterval(spawnHeart, 600);
+
+    /* ── COUNTDOWN ── */
+    // Change this date to your actual anniversary / start date
+    const startDate = new Date("2024-01-01T00:00:00");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = now - startDate;
+      if (diff < 0) return;
+      const days    = Math.floor(diff / 86400000);
+      const hours   = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+      document.getElementById("days").textContent    = String(days).padStart(3, "0");
+      document.getElementById("hours").textContent   = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    /* ── SCROLL REVEAL ── */
+    const reveals = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); } });
+    }, { threshold: 0.15 });
+    reveals.forEach(r => obs.observe(r));
+  </script>
+</body>
+</html>

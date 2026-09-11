@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story — Barsha & You</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* STORY PAGE */
+    .page-hero {
+      min-height: 55vh; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center;
+      background: radial-gradient(ellipse at center, #2d0505 0%, #0d0000 100%);
+      padding: 6rem 2rem 3rem; position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(192,57,43,0.1) 1px, transparent 1px);
+      background-size: 25px 25px;
+    }
+    .page-hero h1 {
+      font-family: "Dancing Script", cursive; font-size: clamp(2.5rem,8vw,5.5rem); color: #fff;
+      text-shadow: 0 0 40px rgba(192,57,43,.8); position: relative; z-index: 1;
+    }
+    .page-hero p {
+      font-family: "Playfair Display", serif; font-style: italic;
+      color: #F5B7B1; font-size: 1.1rem; margin-top: .8rem; position: relative; z-index: 1;
+    }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding: 2rem 0; }
+    .timeline::before {
+      content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, transparent, #C0392B, #D4AC0D, #C0392B, transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item {
+      display: flex; align-items: flex-start; margin-bottom: 4rem; position: relative;
+    }
+    .tl-item:nth-child(odd) { flex-direction: row; }
+    .tl-item:nth-child(even) { flex-direction: row-reverse; }
+
+    .tl-content {
+      width: calc(50% - 3rem); background: #fff; border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(139,26,26,0.12); padding: 1.8rem;
+      border-top: 4px solid #C0392B;
+    }
+    .tl-item:nth-child(even) .tl-content { border-top-color: #D4AC0D; }
+
+    .tl-dot {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #8B1A1A, #C0392B);
+      box-shadow: 0 0 0 4px #fff, 0 0 0 6px rgba(192,57,43,0.3);
+      font-size: 1.4rem; z-index: 2;
+    }
+    .tl-item:nth-child(even) .tl-dot { background: linear-gradient(135deg, #C8A400, #D4AC0D); }
+
+    .tl-date {
+      font-family: "Dancing Script", cursive; font-size: 1rem; color: #C0392B;
+      font-weight: 700; margin-bottom: .4rem; letter-spacing: 1px;
+    }
+    .tl-item:nth-child(even) .tl-date { color: #D4AC0D; }
+    .tl-content h3 { font-family: "Playfair Display", serif; font-size: 1.25rem; color: #3D0000; margin-bottom: .6rem; }
+    .tl-content p { font-size: .95rem; line-height: 1.8; color: #555; }
+    .tl-content p span { color: #C0392B; font-style: italic; font-weight: 700; }
+
+    /* LOVE STATS */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .stat-box {
+      background: linear-gradient(135deg, #8B1A1A, #C0392B); border-radius: 16px;
+      padding: 1.8rem; text-align: center; color: #fff;
+    }
+    .stat-num {
+      font-family: "Dancing Script", cursive; font-size: 3rem; color: #F9E79F; display: block; line-height: 1;
+    }
+    .stat-label { font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase; color: #F5B7B1; margin-top: .4rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .timeline::before { left: 24px; }
+      .tl-item, .tl-item:nth-child(even) { flex-direction: column; padding-left: 60px; }
+      .tl-content { width: 100%; }
+      .tl-dot { left: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <nav>
+    <a href="index.html" class="logo">❤ Barsha</a>
+    <a href="index.html">Home</a>
+    <a href="story.html" class="active">Our Story</a>
+    <a href="letter.html">Love Letter</a>
+    <a href="memories.html">Memories</a>
+    <a href="promises.html">Promises</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>Our Love Story</h1>
+    <p>A tale that began the moment I found you, Barsha</p>
+  </section>
+
+  <!-- STORY INTRO -->
+  <section class="bg-rose">
+    <div class="section" style="max-width:800px;">
+      <h2 class="section-title reveal">How It All Began</h2>
+      <div class="divider reveal">🌹</div>
+      <p class="reveal" style="font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.9;color:#3D0000;text-align:center;">
+        Every love story is beautiful, but ours is my favourite. It did not begin with fireworks or grand gestures — it began quietly, softly, the way a rose blooms at dawn. And once it started, I knew it was the story I had been waiting my whole life to live.
+      </p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="bg-rose">
+    <div class="section">
+      <h2 class="section-title reveal">Our Timeline</h2>
+      <div class="divider reveal">💕</div>
+
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-content">
+            <div class="tl-date">Chapter One</div>
+            <h3>The First Hello</h3>
+            <p>The universe conspired to bring us to the same place at the same time. When I first saw <span>Barsha</span>, something inside me shifted — like a compass finding its true north. That first hello changed everything.</p>
+          </div>
+          <div class="tl-dot">👋</div>
+          <div style="width:calc(50% - 3rem);"></div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div style="width:calc(50% - 3rem);"></div>
+          <div class="tl-dot">💬</div>
+          <div class="tl-content">
+            <div class="tl-date">Chapter Two</div>
+            <h3>Late Night Conversations</h3>
+            <p>Our talks became the highlight of every day. Hours felt like minutes. I discovered a mind as beautiful as your soul — curious, warm, wonderfully <span>Barsha</span>. I fell a little more with every word.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-content">
+            <div class="tl-date">Chapter Three</div>
+            <h3>The Moment I Knew</h3>
+            <p>There was one quiet, ordinary moment when I looked at you — really looked — and knew with absolute certainty that I loved you. No fanfare, no lightning bolt. Just a soft, undeniable knowing: <span>she is the one</span>.</p>
+          </div>
+          <div class="tl-dot">💡</div>
+          <div style="width:calc(50% - 3rem);"></div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div style="width:calc(50% - 3rem);"></div>
+          <div class="tl-dot">❤️</div>
+          <div class="tl-content">
+            <div class="tl-date">Chapter Four</div>
+            <h3>Falling in Love</h3>
+            <p>Falling in love with <span>Barsha</span> was like falling asleep — slowly, gently, and then all at once. Every laugh, every late reply, every shared silence pulled me deeper into a love I never want to escape from.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-content">
+            <div class="tl-date">Chapter Five</div>
+            <h3>Us, Together</h3>
+            <p>And here we are — writing the most beautiful chapter yet. Together we are unstoppable, unbreakable, and so incredibly blessed to have found each other. This is not the end of the story; it is just the most wonderful beginning.</p>
+          </div>
+          <div class="tl-dot">🌹</div>
+          <div style="width:calc(50% - 3rem);"></div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div style="width:calc(50% - 3rem);"></div>
+          <div class="tl-dot">✨</div>
+          <div class="tl-content">
+            <div class="tl-date">Chapter Six — Ongoing</div>
+            <h3>Every Day With You</h3>
+            <p>The best chapter is the one we are still writing, every single day. Each morning I wake up grateful that life gave me <span>Barsha</span>. Our love story has no final page — it just keeps getting better.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section style="background:linear-gradient(135deg,#1a0505,#2d0a0a);padding:4rem 2rem;">
+    <div style="max-width:900px;margin:0 auto;">
+      <h2 class="section-title reveal" style="color:#F9E79F;">Love by the Numbers</h2>
+      <div class="divider reveal" style="color:#D4AC0D;">💛</div>
+      <div class="stats-grid">
+        <div class="stat-box reveal"><span class="count-anim stat-num" data-target="1000">0</span><span class="stat-label">Smiles Given</span></div>
+        <div class="stat-box reveal"><span class="count-anim stat-num" data-target="365">0</span><span class="stat-label">Days of Loving You</span></div>
+        <div class="stat-box reveal"><span class="count-anim stat-num" data-target="99">0</span><span class="stat-label">Reasons I Love You</span></div>
+        <div class="stat-box reveal"><span class="count-anim stat-num" data-target="1">0</span><span class="stat-label">You — My Everything</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Made with <span>❤</span> for Barsha — always and forever</footer>
+
+  <script>
+    const container = document.getElementById("heartsContainer");
+    const emojis = ["❤️","💕","💗","💓","💖","🌹","💝","✨"];
+    function spawnHeart() {
+      const el = document.createElement("div");
+      el.className = "heart-particle";
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (.8 + Math.random() * 1.2) + "rem";
+      const dur = 7 + Math.random() * 8;
+      el.style.animationDuration = dur + "s";
+      container.appendChild(el);
+      setTimeout(() => el.remove(), dur * 1000);
+    }
+    setInterval(spawnHeart, 800);
+
+    /* Scroll reveal */
+    const reveals = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => obs.observe(r));
+
+    /* Count animation */
+    const counters = document.querySelectorAll(".count-anim");
+    const obsCount = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.target;
+        const dur = 1500;
+        const step = target / (dur / 16);
+        let cur = 0;
+        const tick = () => {
+          cur = Math.min(cur + step, target);
+          el.textContent = Math.floor(cur);
+          if (cur < target) requestAnimationFrame(tick);
+        };
+        tick();
+        obsCount.unobserve(el);
+      });
+    }, { threshold: 0.3 });
+    counters.forEach(c => obsCount.observe(c));
+  </script>
+</body>
+</html>

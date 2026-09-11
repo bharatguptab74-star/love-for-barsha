@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Promises — To Barsha, Forever</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* DARK ROMANTIC PAGE */
+    body { background: #0d0000; color: #fff; }
+
+    .page-hero {
+      min-height: 60vh; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center;
+      background: radial-gradient(ellipse at center, #3d0000 0%, #0d0000 100%);
+      padding: 6rem 2rem 3rem; position: relative; overflow: hidden;
+    }
+    .star-field {
+      position: absolute; inset: 0; overflow: hidden;
+    }
+    .star {
+      position: absolute; border-radius: 50%; background: #fff;
+      animation: twinkle ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; transform: scale(1); }
+      50%      { opacity: 1;   transform: scale(1.4); }
+    }
+
+    .page-hero h1 {
+      font-family: "Dancing Script", cursive; font-size: clamp(2.5rem,8vw,5.5rem); color: #fff;
+      text-shadow: 0 0 40px rgba(212,172,13,.7), 0 0 80px rgba(212,172,13,.3); position: relative; z-index: 1;
+    }
+    .page-hero p {
+      font-family: "Playfair Display", serif; font-style: italic;
+      color: #F9E79F; font-size: 1.1rem; margin-top: .8rem; position: relative; z-index: 1;
+    }
+
+    /* PROMISES */
+    .promises-section { background: #0d0000; padding: 5rem 2rem; }
+    .promise-container { max-width: 900px; margin: 0 auto; }
+
+    .promise-item {
+      display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 3rem;
+      padding: 2rem; border-radius: 16px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(212,172,13,0.15);
+      transition: background .3s, border-color .3s, transform .3s;
+    }
+    .promise-item:hover {
+      background: rgba(192,57,43,0.08); border-color: rgba(212,172,13,0.4); transform: translateX(8px);
+    }
+    .promise-num {
+      font-family: "Dancing Script", cursive; font-size: 4rem; color: rgba(212,172,13,0.25);
+      line-height: 1; flex-shrink: 0; min-width: 70px; text-align: center;
+    }
+    .promise-content h3 {
+      font-family: "Dancing Script", cursive; font-size: 1.7rem; color: #F9E79F; margin-bottom: .5rem;
+    }
+    .promise-content p {
+      font-family: "Playfair Display", serif; font-size: 1rem; line-height: 1.9;
+      color: rgba(255,255,255,0.75);
+    }
+    .promise-content p span { color: #F5B7B1; font-style: italic; font-weight: 700; }
+    .promise-icon { font-size: 1.5rem; margin-left: auto; flex-shrink: 0; }
+
+    /* FLAME SECTION */
+    .flame-section {
+      background: linear-gradient(160deg, #1a0505, #2d0000);
+      padding: 5rem 2rem; text-align: center;
+    }
+    .flame-emoji {
+      font-size: 5rem; animation: pulse 2s ease-in-out infinite; display: inline-block;
+      filter: drop-shadow(0 0 20px rgba(192,57,43,0.8));
+    }
+    .flame-text {
+      font-family: "Playfair Display", serif; font-style: italic;
+      font-size: clamp(1.1rem,2.5vw,1.5rem); color: rgba(255,255,255,0.85);
+      max-width: 700px; margin: 2rem auto; line-height: 2;
+    }
+    .flame-text span { color: #F9E79F; }
+
+    /* RING / SEAL */
+    .seal {
+      width: 200px; height: 200px; margin: 3rem auto;
+      border-radius: 50%; border: 3px solid #D4AC0D;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; animation: pulse 4s ease-in-out infinite;
+      box-shadow: 0 0 0 6px rgba(212,172,13,0.1), 0 0 0 12px rgba(212,172,13,0.05), 0 0 60px rgba(212,172,13,0.15);
+      background: radial-gradient(circle, #2d0000, #1a0000);
+    }
+    .seal .seal-emoji { font-size: 4rem; }
+    .seal .seal-text {
+      font-family: "Dancing Script", cursive; font-size: 1rem; color: #F9E79F; margin-top: .4rem;
+    }
+    .seal-ring {
+      position: absolute; inset: -14px; border-radius: 50%;
+      border: 1px solid rgba(212,172,13,0.3);
+    }
+    .seal-ring2 {
+      position: absolute; inset: -22px; border-radius: 50%;
+      border: 1px dashed rgba(212,172,13,0.15);
+    }
+
+    /* OATH CARD */
+    .oath-card {
+      max-width: 700px; margin: 0 auto;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(212,172,13,0.3);
+      border-radius: 20px; padding: 3rem; text-align: center;
+    }
+    .oath-title {
+      font-family: "Dancing Script", cursive; font-size: 2.5rem; color: #F9E79F; margin-bottom: 1.5rem;
+    }
+    .oath-text {
+      font-family: "Playfair Display", serif; font-style: italic; font-size: 1.1rem;
+      color: rgba(255,255,255,0.8); line-height: 2; margin-bottom: 2rem;
+    }
+    .oath-text span { color: #F5B7B1; font-weight: 700; font-style: normal; }
+    .oath-sign {
+      font-family: "Dancing Script", cursive; font-size: 2rem; color: #D4AC0D;
+    }
+
+    /* FIREWORK BUTTON */
+    .firework-btn {
+      display: inline-block; margin-top: 2.5rem; padding: 1rem 3rem;
+      background: linear-gradient(135deg, #8B1A1A, #C0392B);
+      color: #F9E79F; font-family: "Dancing Script", cursive; font-size: 1.4rem;
+      border: none; border-radius: 50px; cursor: pointer;
+      box-shadow: 0 6px 30px rgba(192,57,43,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .firework-btn:hover { transform: scale(1.05); box-shadow: 0 10px 40px rgba(192,57,43,0.6); }
+
+    /* FIREWORKS */
+    @keyframes burst {
+      0%   { transform: translate(0,0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
+    .spark {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 9990;
+      animation: burst .8s ease-out forwards;
+    }
+
+    @media (max-width: 600px) {
+      .promise-item { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <nav>
+    <a href="index.html" class="logo">❤ Barsha</a>
+    <a href="index.html">Home</a>
+    <a href="story.html">Our Story</a>
+    <a href="letter.html">Love Letter</a>
+    <a href="memories.html">Memories</a>
+    <a href="promises.html" class="active">Promises</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="star-field" id="starField"></div>
+    <h1>My Promises to Barsha</h1>
+    <p>Sealed under every star in the sky — tonight and forever</p>
+  </section>
+
+  <!-- INTRO -->
+  <div class="flame-section">
+    <div class="flame-emoji">🕯️</div>
+    <p class="flame-text reveal">
+      Promises are easy to make and hard to keep. So what I offer here are not just words — they are vows, written from the most honest part of my soul, made specifically for <span>Barsha</span>, to last for as long as I have breath in my body.
+    </p>
+  </div>
+
+  <!-- PROMISES -->
+  <section class="promises-section">
+    <div class="promise-container">
+      <h2 class="section-title reveal" style="color:#F9E79F;">The Promises I Make</h2>
+      <div class="divider reveal" style="color:#D4AC0D;">✨</div>
+
+      <div class="promise-item reveal">
+        <div class="promise-num">01</div>
+        <div class="promise-content">
+          <h3>I Promise to Always Choose You</h3>
+          <p>Every single day, I will choose you — not just when it is easy, but when it is difficult, when I am tired, when the world is complicated. I choose <span>Barsha</span> every morning I wake up, every night I fall asleep, and every moment in between.</p>
+        </div>
+        <div class="promise-icon">❤️</div>
+      </div>
+
+      <div class="promise-item reveal">
+        <div class="promise-num">02</div>
+        <div class="promise-content">
+          <h3>I Promise to Make You Feel Loved</h3>
+          <p>Not just on anniversaries and grand occasions, but in the small, quiet moments — a message at midnight, a thought shared over tea, a reminder that <span>you are cherished</span> in every ordinary Tuesday and rainy Friday alike.</p>
+        </div>
+        <div class="promise-icon">💌</div>
+      </div>
+
+      <div class="promise-item reveal">
+        <div class="promise-num">03</div>
+        <div class="promise-content">
+          <h3>I Promise to Be Your Safe Place</h3>
+          <p>Whatever life brings — storms or sunshine, triumph or heartbreak — I will be the place <span>Barsha</span> can always come to. No judgement, no conditions. Just arms open and a heart ready to hold whatever you carry.</p>
+        </div>
+        <div class="promise-icon">🏠</div>
+      </div>
+
+      <div class="promise-item reveal">
+        <div class="promise-num">04</div>
+        <div class="promise-content">
+          <h3>I Promise to Grow With You</h3>
+          <p>Love is not static. I promise to grow, to learn, to change — and to do all of it <em>with you</em>. To be curious about who <span>Barsha</span> is becoming, and to celebrate every version of you with equal wonder and pride.</p>
+        </div>
+        <div class="promise-icon">🌱</div>
+      </div>
+
+      <div class="promise-item reveal">
+        <div class="promise-num">05</div>
+        <div class="promise-content">
+          <h3>I Promise to Make You Laugh</h3>
+          <p>Life is too short for too much seriousness. I promise to be the reason <span>Barsha</span> laughs — the silly jokes, the terrible puns, the spontaneous dance in the kitchen. Your laughter is my greatest achievement.</p>
+        </div>
+        <div class="promise-icon">😄</div>
+      </div>
+
+      <div class="promise-item reveal">
+        <div class="promise-num">06</div>
+        <div class="promise-content">
+          <h3>I Promise to Never Stop Appreciating You</h3>
+          <p>I will not take for granted the miracle of having you. I will remind you — in words, in actions, in how I look at you — that <span>Barsha</span> is extraordinary, and that I know exactly how lucky I am to call you mine.</p>
+        </div>
+        <div class="promise-icon">🌟</div>
+      </div>
+
+      <div class="promise-item reveal">
+        <div class="promise-num">07</div>
+        <div class="promise-content">
+          <h3>I Promise to Love You — Always</h3>
+          <p>Not just when it is convenient. Not just when everything is perfect. But always — in the messy, imperfect, beautiful reality of life. My love for <span>Barsha</span> has no expiry date, no fine print, no escape clause. It is simply, wholly, forever.</p>
+        </div>
+        <div class="promise-icon">♾️</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OATH / SEAL -->
+  <div class="flame-section" style="padding:4rem 2rem;">
+    <div class="oath-card reveal">
+      <div class="oath-title">My Oath to You</div>
+      <div class="oath-text">
+        I, with every fibre of who I am, solemnly vow to love <span>Barsha</span> with the full, unguarded, boundless love she deserves. This is not a contract — it is a commitment written in the language of the heart, witnessed by every star in the sky, sealed by every moment we have shared, and renewed every single day for the rest of my life.
+      </div>
+      <div class="seal">
+        <div class="seal-ring"></div>
+        <div class="seal-ring2"></div>
+        <span class="seal-emoji">💍</span>
+        <span class="seal-text">Sealed with Love</span>
+      </div>
+      <div class="oath-sign">— Yours, Always ❤</div>
+      <br/>
+      <button class="firework-btn" id="celebrateBtn">✨ Celebrate Our Love ✨</button>
+    </div>
+  </div>
+
+  <!-- FINAL MESSAGE -->
+  <section style="background:linear-gradient(135deg,#0d0000,#1a0000);padding:5rem 2rem;text-align:center;">
+    <h2 style="font-family:'Dancing Script',cursive;font-size:clamp(2rem,5vw,3.5rem);color:#F9E79F;margin-bottom:1.5rem;" class="reveal">
+      My Barsha, My Everything
+    </h2>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,0.8);font-size:1.15rem;max-width:650px;margin:0 auto;line-height:2;" class="reveal">
+      If I could gift you anything in the world, it would be the ability to see yourself through my eyes — because then you would understand, completely and without doubt, just how breathtakingly wonderful you truly are. I love you, Barsha. Today. Tomorrow. Always.
+    </p>
+    <div style="font-size:4rem;margin-top:2rem;animation:pulse 2s ease-in-out infinite;display:inline-block;filter:drop-shadow(0 0 20px rgba(192,57,43,0.8));" class="reveal">🌹</div>
+  </section>
+
+  <footer>Made with <span>❤</span> for Barsha — always and forever</footer>
+
+  <script>
+    /* STARS */
+    const starField = document.getElementById("starField");
+    for (let i = 0; i < 120; i++) {
+      const s = document.createElement("div");
+      s.className = "star";
+      const size = Math.random() * 3 + 1;
+      s.style.cssText = "width:" + size + "px;height:" + size + "px;top:" + Math.random()*100 + "%;left:" + Math.random()*100 + "%;animation-duration:" + (2+Math.random()*4) + "s;animation-delay:" + Math.random()*3 + "s";
+      starField.appendChild(s);
+    }
+
+    /* HEARTS */
+    const container = document.getElementById("heartsContainer");
+    const emojis = ["❤️","💕","💗","💓","💖","🌹","💝","✨","💞","🌟"];
+    function spawnHeart() {
+      const el = document.createElement("div");
+      el.className = "heart-particle";
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (.8 + Math.random() * 1.2) + "rem";
+      const dur = 7 + Math.random() * 8;
+      el.style.animationDuration = dur + "s";
+      container.appendChild(el);
+      setTimeout(() => el.remove(), dur * 1000);
+    }
+    setInterval(spawnHeart, 600);
+
+    /* REVEAL */
+    const reveals = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+
+    /* FIREWORKS */
+    document.getElementById("celebrateBtn").addEventListener("click", function(e) {
+      const cx = e.clientX, cy = e.clientY;
+      const colors = ["#C0392B","#D4AC0D","#F5B7B1","#F9E79F","#fff","#8B1A1A","#ff6b9d"];
+      for (let i = 0; i < 50; i++) {
+        const spark = document.createElement("div");
+        spark.className = "spark";
+        const size = 6 + Math.random() * 8;
+        const angle = Math.random() * 360;
+        const dist  = 60 + Math.random() * 200;
+        const tx = Math.cos(angle * Math.PI / 180) * dist;
+        const ty = Math.sin(angle * Math.PI / 180) * dist;
+        spark.style.cssText = "width:" + size + "px;height:" + size + "px;" +
+          "left:" + cx + "px;top:" + cy + "px;" +
+          "background:" + colors[Math.floor(Math.random()*colors.length)] + ";" +
+          "--tx:" + tx + "px;--ty:" + ty + "px;" +
+          "animation-delay:" + Math.random()*0.3 + "s";
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1200);
+      }
+    });
+  </script>
+</body>
+</html>

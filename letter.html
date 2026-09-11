@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Letter — To Barsha</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      min-height: 55vh; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center;
+      background: radial-gradient(ellipse at center, #2d0505 0%, #0d0000 100%);
+      padding: 6rem 2rem 3rem; position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(212,172,13,0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .page-hero h1 {
+      font-family: "Dancing Script", cursive; font-size: clamp(2.5rem,8vw,5.5rem); color: #fff;
+      text-shadow: 0 0 40px rgba(212,172,13,.6); position: relative; z-index: 1;
+    }
+    .page-hero p {
+      font-family: "Playfair Display", serif; font-style: italic;
+      color: #F9E79F; font-size: 1.1rem; margin-top: .8rem; position: relative; z-index: 1;
+    }
+
+    /* LETTER */
+    .letter-wrapper {
+      max-width: 720px; margin: 0 auto;
+      background: #fff; border-radius: 4px;
+      box-shadow: 0 20px 80px rgba(139,26,26,0.18), 8px 8px 0 #f5b7b1, 12px 12px 0 rgba(192,57,43,0.15);
+      padding: 3rem 3.5rem; position: relative;
+    }
+    .letter-wrapper::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, #8B1A1A, #D4AC0D, #C0392B);
+    }
+    .letter-stamp {
+      position: absolute; top: 1.5rem; right: 1.5rem; width: 60px; height: 60px;
+      background: linear-gradient(135deg, #8B1A1A, #C0392B); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.3);
+      border: 2px dashed rgba(255,255,255,0.5);
+    }
+    .letter-date {
+      font-family: "Dancing Script", cursive; font-size: 1rem; color: #888;
+      margin-bottom: 2rem; letter-spacing: 1px;
+    }
+    .letter-salutation {
+      font-family: "Dancing Script", cursive; font-size: 2rem; color: #8B1A1A;
+      margin-bottom: 1.5rem;
+    }
+    .letter-body p {
+      font-family: "Playfair Display", serif; font-size: 1.05rem; line-height: 2;
+      color: #3D0000; margin-bottom: 1.4rem; text-indent: 2rem;
+    }
+    .letter-body p span { color: #C0392B; font-style: italic; font-weight: 700; }
+    .letter-sign {
+      font-family: "Dancing Script", cursive; font-size: 1.8rem; color: #8B1A1A;
+      margin-top: 2rem; text-align: right;
+    }
+    .letter-sign small { display: block; font-family: "Lato", sans-serif; font-size: .75rem; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-top: .3rem; }
+
+    /* PAPER LINES */
+    .ruled-bg {
+      background-image: repeating-linear-gradient(transparent, transparent 39px, rgba(192,57,43,0.08) 39px, rgba(192,57,43,0.08) 40px);
+      background-size: 100% 40px;
+    }
+
+    /* REASONS */
+    .reasons-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem;
+    }
+    .reason-card {
+      background: linear-gradient(135deg, #fff0f0, #fff8f8); border-radius: 12px;
+      padding: 1.5rem; border-left: 4px solid #C0392B;
+      box-shadow: 0 4px 20px rgba(139,26,26,0.08);
+      transition: transform .3s;
+    }
+    .reason-card:hover { transform: translateX(6px); }
+    .reason-num {
+      font-family: "Dancing Script", cursive; font-size: 2rem; color: rgba(192,57,43,0.2); float: left;
+      margin-right: .5rem; line-height: 1;
+    }
+    .reason-text { font-family: "Playfair Display", serif; font-size: .95rem; color: #3D0000; line-height: 1.7; }
+
+    /* POEM */
+    .poem-wrap {
+      background: linear-gradient(135deg, #1a0505, #2d0a0a); border-radius: 20px;
+      padding: 3rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .poem-wrap::before {
+      content: "❝"; font-family: "Playfair Display", serif; font-size: 10rem;
+      color: rgba(212,172,13,0.08); position: absolute; top: -1rem; left: 1rem; line-height: 1;
+    }
+    .poem-text {
+      font-family: "Playfair Display", serif; font-style: italic;
+      font-size: 1.15rem; line-height: 2.2; color: #fff; position: relative; z-index: 1;
+    }
+    .poem-text span { color: #F9E79F; }
+
+    @media (max-width: 768px) {
+      .letter-wrapper { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <nav>
+    <a href="index.html" class="logo">❤ Barsha</a>
+    <a href="index.html">Home</a>
+    <a href="story.html">Our Story</a>
+    <a href="letter.html" class="active">Love Letter</a>
+    <a href="memories.html">Memories</a>
+    <a href="promises.html">Promises</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <h1>A Letter to Barsha</h1>
+    <p>Words from the deepest corner of my heart</p>
+  </section>
+
+  <!-- LETTER -->
+  <section class="bg-rose">
+    <div class="section">
+      <div class="letter-wrapper ruled-bg reveal">
+        <div class="letter-stamp">💌</div>
+        <div class="letter-date" id="letterDate">Loading date...</div>
+        <div class="letter-salutation">My Dearest Barsha,</div>
+
+        <div class="letter-body">
+          <p>There are moments in life that don't announce themselves — they simply arrive, quietly rearranging everything. That is what <span>you</span> did to my world. You arrived, and without making any noise, you rearranged my heart, my thoughts, my definition of happiness.</p>
+
+          <p>I have searched for words grand enough to hold what I feel for you, and I keep coming back empty-handed. Because what I feel for you, <span>Barsha</span>, is bigger than language. It lives in the silence between words, in the warmth of every morning I think of you, in every song that suddenly makes sense.</p>
+
+          <p>You are the kind of person who makes the world softer just by being in it. Your laugh is my favourite sound. Your kindness is the most beautiful thing I have ever witnessed. And your love — the way you love — it heals parts of me I didn't even know were broken.</p>
+
+          <p>There are days when everything feels heavy and difficult, and all it takes is the thought of <span>Barsha</span> — your face, your voice, your spirit — and suddenly the weight lifts. You are my calm in every storm, my light in every darkness, my reason to keep going.</p>
+
+          <p>I want you to know that loving you is the most natural thing I have ever done. It requires no effort, no pretence. It simply is — like breathing, like the sun rising, like the tide coming in. <span>You are inevitable</span> to me, and I am so endlessly grateful for that.</p>
+
+          <p>So here, in this letter that could never be long enough, I want to say what I hope you always feel even when I forget to say it: <span>You are loved. Deeply. Completely. Unconditionally.</span> Every single day, in every single way, by me — always.</p>
+        </div>
+
+        <div class="letter-sign">
+          Yours, always and only ❤
+          <small>Written with every piece of love I own</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section class="bg-rose">
+    <div class="section">
+      <h2 class="section-title reveal">10 Reasons I Love You</h2>
+      <div class="divider reveal">💗</div>
+      <div class="reasons-grid">
+        <div class="reason-card reveal"><span class="reason-num">01</span><p class="reason-text">Your smile — the one that reaches your eyes and makes everything around you glow.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">02</span><p class="reason-text">The way you care — deeply, genuinely, without keeping count.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">03</span><p class="reason-text">Your laugh, Barsha — it is literally my favourite song in the universe.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">04</span><p class="reason-text">How you make ordinary moments feel like magic without even trying.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">05</span><p class="reason-text">Your strength — the quiet, fierce, beautiful way you face everything.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">06</span><p class="reason-text">The warmth you carry — everyone who meets you feels it immediately.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">07</span><p class="reason-text">The way you understand me — even the parts I struggle to explain.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">08</span><p class="reason-text">Your heart — so big, so kind, so endlessly wonderful.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">09</span><p class="reason-text">The fact that you chose me — and that never stops feeling like a miracle.</p></div>
+        <div class="reason-card reveal"><span class="reason-num">10</span><p class="reason-text">Simply because you are <em>you</em> — and that is more than enough reason.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POEM -->
+  <section class="bg-rose">
+    <div class="section" style="max-width:700px;">
+      <h2 class="section-title reveal">A Poem for Barsha</h2>
+      <div class="divider reveal">🌹</div>
+      <div class="poem-wrap reveal">
+        <div class="poem-text">
+          In a world full of noise, <span>you are my quiet</span>,<br/>
+          In a world full of rush, <span>you are my still</span>.<br/>
+          In every ordinary day, <span>you are my wonder</span>,<br/>
+          In every impossible dream, <span>you are my will</span>.<br/><br/>
+          Your name on my lips feels like coming home,<br/>
+          Your hand in mine — the place I belong.<br/>
+          Oh <span>Barsha</span>, you have made me so certain<br/>
+          That wherever you are, that is where I am strong.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Made with <span>❤</span> for Barsha — always and forever</footer>
+
+  <script>
+    const container = document.getElementById("heartsContainer");
+    const emojis = ["❤️","💕","💗","💌","💖","🌹","💝","✨","💞"];
+    function spawnHeart() {
+      const el = document.createElement("div");
+      el.className = "heart-particle";
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (.8 + Math.random() * 1.2) + "rem";
+      const dur = 7 + Math.random() * 8;
+      el.style.animationDuration = dur + "s";
+      container.appendChild(el);
+      setTimeout(() => el.remove(), dur * 1000);
+    }
+    setInterval(spawnHeart, 700);
+
+    /* Date */
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const d = new Date();
+    document.getElementById("letterDate").textContent = d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+
+    /* Reveal */
+    const reveals = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+  </script>
+</body>
+</html>
